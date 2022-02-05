@@ -1,6 +1,4 @@
-const playerSelection = getPlayerInput();
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+game();
 
 // Makes the computer's play by generating a random number (0-2),
 // and converting it to rock / paper / scissors.
@@ -62,5 +60,29 @@ function getPlayerInput() {
         if(newUserPlay === 'rock' || newUserPlay === 'paper' || newUserPlay === 'scissors') {
             return newUserPlay;
         }
+    }
+}
+
+// Plays 5 rounds of the game and keeps track of the score by checking
+// the 1st characters of the value returned by playRound().
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for(let i = 0; i < 5; i++) {
+        let playerSelection = getPlayerInput();
+        let computerSelection = computerPlay();
+        let result = playRound(playerSelection, computerSelection);
+
+        let scoreCheck = result.substring(0, 8);
+        console.log(scoreCheck);
+        if(scoreCheck === 'You Win!') {
+            playerScore++;
+        } else {
+            computerScore++;
+        }
+
+        console.log(result);
+        console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
     }
 }
