@@ -64,7 +64,8 @@ function getPlayerInput() {
 }
 
 // Plays 5 rounds of the game and keeps track of the score by checking
-// the 1st characters of the value returned by playRound().
+// the 1st characters of the value returned by playRound(), and displays
+// the winner after the final round.
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -83,5 +84,13 @@ function game() {
 
         console.log(result);
         console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
+    }
+
+    if(playerScore > computerScore) {
+        console.log("End of game! You win! :D");
+    } else if(playerScore === computerScore) {
+        console.log("End of game! It's a draw! :|");
+    } else {
+        console.log("End of game! You lose! :(");
     }
 }
