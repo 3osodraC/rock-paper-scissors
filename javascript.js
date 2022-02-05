@@ -75,7 +75,6 @@ function game() {
         let result = playRound(playerSelection, computerSelection);
 
         let scoreCheck = result.substring(0, 8);
-        console.log(scoreCheck);
         if(scoreCheck === 'You Win!') {
             playerScore++;
         } else {
