@@ -1,4 +1,72 @@
-game();
+const btnRock = document.querySelector('#btn-rock');
+const btnPaper = document.querySelector('#btn-paper');
+const btnScissors = document.querySelector('#btn-scissors');
+
+const playerScoreDisplayDiv = document.querySelector('.player-score-display');
+const computerScoreDisplayDiv = document.querySelector('.computer-score-display');
+const announcer = document.querySelector('.announcer');
+
+// Each button calls playRound() with the respective argument (rock/paper/scissors)
+// and outputs the result to the announcer div.
+btnRock.addEventListener('click', () => {
+    announcer.textContent = playRound('rock', computerPlay());
+    updateScoreDisplay();
+    announceWinner();
+});
+
+btnPaper.addEventListener('click', () => {
+    announcer.textContent = playRound('paper', computerPlay());
+    updateScoreDisplay();
+    announceWinner();
+});
+
+btnScissors.addEventListener('click', () => {
+    announcer.textContent = playRound('scissors', computerPlay());
+    updateScoreDisplay();
+    announceWinner();
+});
+
+let playerScoreDisplay = 0;
+let computerScoreDisplay = 0;
+
+// Updates the score by scanning the announcer.
+function updateScoreDisplay() {
+    let cmpScoreText;
+    let plyrScoreText;
+
+    switch(true) {
+        case announcer.textContent === "You Win! :D Paper beats Rock!" ||
+        announcer.textContent === "You Win! :D Rock beats Scissors!" ||
+        announcer.textContent === "You Win! :D Scissors beats Paper!":
+            playerScoreDisplay++;
+            plyrScoreText = playerScoreDisplay.toString();
+            playerScoreDisplayDiv.textContent = plyrScoreText;
+            break;
+        case announcer.textContent === "Draw!":
+            break;
+        default:
+            computerScoreDisplay++;
+            cmpScoreText = computerScoreDisplay.toString();
+            computerScoreDisplayDiv.textContent = cmpScoreText;
+            break;
+    }
+}
+
+function announceWinner() {
+    if(playerScoreDisplayDiv.textContent === '5') {
+        announcer.textContent = 'End of Game! You Won! 🎉';
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
+    } else if(computerScoreDisplayDiv.textContent === '5') {
+        announcer.textContent = 'End of Game! You Lost! ❌';
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
+    } else {
+        return;
+    }
+}
 
 // Makes the computer's play by generating a random number (0-2),
 // and converting it to rock / paper / scissors.
@@ -47,50 +115,5 @@ function playRound(playerSelection, computerSelection) {
         case playerSelection === computerSelection:
             result = "Draw!";
             return result;
-    }
-}
-
-// Prompt user for their selection. Keeps prompting until input is valid.
-function getPlayerInput() {
-    let userPlay;
-    while(true) {
-        userPlay = prompt('Make your play.');
-        let newUserPlay = userPlay.toLowerCase();
-
-        if(newUserPlay === 'rock' || newUserPlay === 'paper' || newUserPlay === 'scissors') {
-            return newUserPlay;
-        }
-    }
-}
-
-// Plays 5 rounds of the game and keeps track of the score by checking
-// the 1st characters of the value returned by playRound(), and displays
-// the winner after the final round.
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for(let i = 0; i < 5; i++) {
-        let playerSelection = getPlayerInput();
-        let computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-
-        let scoreCheck = result.substring(0, 8);
-        if(scoreCheck === 'You Win!') {
-            playerScore++;
-        } else {
-            computerScore++;
-        }
-
-        console.log(result);
-        console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    }
-
-    if(playerScore > computerScore) {
-        console.log("End of game! You win! :D");
-    } else if(playerScore === computerScore) {
-        console.log("End of game! It's a draw! :|");
-    } else {
-        console.log("End of game! You lose! :(");
     }
 }

@@ -1,0 +1,108 @@
+/* elements */
+body {
+	background-color: #151b29;
+	color: aliceblue;
+	display: flex;
+	font-family: Roboto, sans-serif;
+	flex-direction: column;
+}
+
+button {
+	border: none;
+	background-color: #273257;
+	border-radius: 16px;
+	color: aliceblue;
+	height: 64px;
+	width: 128px;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+h1 {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+/* classes & IDs */
+.announcer {
+	background-color: #090c13;
+	border-radius: 8px;
+	color: aliceblue;
+	display: flex;
+	font-size: large;
+	font-weight: 700;
+	justify-content: center;
+	margin: 32px;
+	padding: 30px;
+}
+
+#btn-container {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+}
+
+#btn-rock:hover {
+	background-color: #fd2222;
+	box-shadow: 5px 5px 16px black;
+	color: black;
+}
+
+#btn-paper:hover {
+	background-color: #00ff73;
+	box-shadow: 5px 5px 16px black;
+	color: black;
+}
+
+#btn-scissors:hover {
+	background-color: #0099ff;
+	box-shadow: 5px 5px 16px black;
+	color: black;
+}
+
+.computer-display-container,  
+.player-display-container{
+	align-items: center;
+	background-color: #090c13;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	padding: 16px;
+	width: 64px;
+}
+
+.computer-display-container {
+	border: solid 3px red;
+}
+
+.player-display-container {
+	border: solid 3px #0048ff;
+}
+
+.display-container {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+	justify-content: space-around;
+	margin: 24px;
+}
+
+.general-container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	margin: 32px 0px 100px;
+	justify-content: center;
+}
+
+.player-score-display, 
+.computer-score-display {
+	align-content: center;
+	font-size: xx-large;
+	font-weight: 700;
+	justify-content: space-around;
+}
